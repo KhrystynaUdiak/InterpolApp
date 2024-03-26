@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/bootstrap-5.3.3-dist/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <title>Create offender</title>
+</head>
+    <body>
+        <div th:replace="header.html :: navbar"></div>
+        <div class="container-fluid">
+            <div th:fragment="offenderform">
+
+<form th:action="@{/offenders/create}" method="post" style="max-width: 700px; margin:0 auto;"
+    th:object="${offender}">
+    <div class="border border-secondary rounded p-3">
+        <div class="form-group row mt-2">
+            <label for = "first_name" class="col-sm-4 col-form-label">First Name: </label>
+                <div class="col-sm-8">
+                     <input id="first_name" type="text" class="form-control" th:field="${offender.firstName}" required>
+                <p th:if="${#fields.hasErrors('firstName')}" th:errorclass="error" th:class="text-danger"
+                   th:errors="*{firstName}">First Name error</p>
+            </div>
+    </div>
+    <div class="form-group row mt-2">
+     <label for = "last_name" class="col-sm-4 col-form-label">Last Name :</label>
+        <div class="col-sm-8">
+     <input id="last_name" type="text" class="form-control" th:field="${offender.lastName}" required>
+            <p th:if="${#fields.hasErrors('lastName')}" th:errorclass="error" th:class="text-danger"
+               th:errors="*{lastName}">Last name error</p>
+        </div>
+    </div>
+    <div class="form-group row mt-2">
+        <label for = "alias" class="col-sm-4 col-form-label">Alias :</label>
+        <div class="col-sm-8">
+        <input id = "alias" type="text" class="form-control" th:field="${offender.alias}">
+        </div>
+    </div>
+
+    <div class="form-group row mt-2">
+        <label for = "birthdate" class="col-sm-4 col-form-label">Birthdate :</label>
+        <div class="col-sm-8">
+        <input id = "birthdate" type="date" th:field="${offender.birthdate}">
+    </div>
+</div>
+    <div class="form-group row mt-2">
+        <label for = "citizenship" class="col-sm-4 col-form-label">Citizenship :</label>
+        <div class="col-sm-8">
+        <select id = "citizenship" th:field="*{citizenship}">
+            <option th:each="citizenship : ${citizenships}"
+                    th:value="${citizenship}"
+                    th:text="${citizenship}">
+
+            </option>
+        </select>
+    </div>
+    </div>
+    <div class="form-group row mt-2">
+        <label for = "criminal_case" class="col-sm-4 col-form-label">Criminal case :</label>
+        <div class="col-sm-8">
+        <input id = "criminal_case" type="text" th:field="${offender.criminalCase}" required>
+    </div>
+    </div>
+    <div class="form-group row mt-2">
+        <label for = "height" class="col-sm-4 col-form-label"> Height :</label>
+        <div class="col-sm-8">
+        <input id = "height" type="number" th:field="${offender.description.height}">
+<!--        <input id = "height" type="number" th:value="${offender.description.height}">-->
+    </div>
+    </div>
+    <div class="form-group row mt-2">
+        <label for = "hair_color" class="col-sm-4 col-form-label">Hair color :</label>
+        <div class="col-sm-8">
+        <input id = "hair_color" type="text" th:field="${offender.description.hairColor}">
+    </div>
+    </div>
+    <div class="form-group row mt-2">
+        <label for = "eye_color" class="col-sm-4 col-form-label">Eye color :</label>
+        <div class="col-sm-8">
+        <input id = "eye_color" type="text" th:field="${offender.description.eyeColor}">
+    </div>
+    </div>
+    <div class="form-group row mt-2">
+        <label for = "distinctive_features" class="col-sm-4 col-form-label">Distinctive features :</label>
+        <div class="col-sm-8">
+        <input id = "distinctive_features" type="text" th:field="${offender.description.distinctiveFeatures}">
+    </div>
+    </div>
+    <div class="form-group row mt-2">
+        <label for = "place_of_birth" class="col-sm-4 col-form-label">Place of birth :</label>
+        <div class="col-sm-8">
+        <input id = "place_of_birth" type="text" th:field="${offender.location.placeOfBirth}">
+    </div>
+    </div>
+    <div class="form-group row mt-2">
+        <label for = "last_place_of_residence" class="col-sm-4 col-form-label">Last place of residence :</label>
+        <div class="col-sm-8">
+        <input id = "last_place_of_residence" type="text" th:field="${offender.location.lastPlaceOfResidence}">
+    </div>
+    </div>
+    <div class="form-group row mt-2">
+        <label for = "criminal_organization" class="col-sm-4 col-form-label">Criminal organization :</label>
+        <div class="col-sm-8">
+        <input id = "criminal_organization" type="text" th:field="${offender.criminalOrganization.name}">
+    </div>
+    </div>
+    <div class="form-group row mt-2">
+        <label for = "kind_of_accomplices" class="col-sm-4 col-form-label">Kind of accomplices :</label>
+        <div class="col-sm-8">
+        <select id = "kind_of_accomplices" th:field="*{criminalOrganization.accomplices}">
+            <option th:each="accomplice : ${accomplices}"
+                    th:value="${accomplice}"
+                    th:text="${accomplice}">
+            </option>
+        </select>
+    </div>
+    </div>
+    <div class="form-group row mt-2">
+        <label for="languages" class="col-sm-4 col-form-label">Languages:</label><br>
+        <div class="col-sm-8">
+        <select id="languages" name="languages" multiple>
+            <option value="">---</option>
+            <option th:each="language : ${languages}"
+                    th:value="${language.id}"
+                    th:text="${language.name}"></option>
+        </select><br><br>
+        </div>
+<!--        <label for = "languages"> Languages :</label>-->
+<!--    <input id = "languages" type="text" th:field="${offender.languages}">-->
+    </div>
+    <div class="text-center">
+        <input type="submit" value="Create" class="btn btn-primary m-3"/>
+        <input id="clear" type="reset" value="Clear" class="btn btn-secondary"/>
+    </div>
+    </div>
+</form>
+    </div>
+</div>
+
+</body>
+</html>

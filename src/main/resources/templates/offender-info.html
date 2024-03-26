@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/bootstrap-5.3.3-dist/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <title>Info about offender</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="d-flex justify-content-center mb-2">
+      <a th:href="@{'/offenders/'+${offender.id}+'/update'}" type="button" class="btn btn-primary">Update</a>
+      <a th:href="@{'/offenders/'+${offender.id}+'/delete'}" type="button" class="btn btn-outline-primary ms-1" onclick="return confirm('The record can be deleted only after offender death. Are you sure you want to delete?');">Delete</a>
+     <a th:href="@{'/offenders/all'}" type="button" class="btn btn-primary">Show all</a>
+    </div>
+<h1>Info about offender</h1>
+    <section style="background-color: #eee;">
+<!--        <div class="container py-5">-->
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" style="width: 150px;">
+<h2 class="my-3">
+    <span th:text="${offender.firstName}" />
+    <span th:text="${offender.lastName}" />
+</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <h3>Identity particulars</h3>
+    <table class="table table-sm table-striped table-horizontal table-hover">
+        <tr>
+            <th scope="row">Alias :</th>
+            <td th:text="${offender.alias}"></td>
+        </tr>
+        <tr>
+            <th scope="row">Birthdate :</th>
+            <td th:text="${offender.birthdate}"></td>
+        </tr>
+        <tr>
+            <th scope="row">Age :</th>
+            <td th:text="${offender.age}"></td>
+        </tr>
+        <tr>
+            <th scope="row">Citizenship :</th>
+            <td th:text="${offender.citizenship}"></td>
+        </tr>
+        <tr>
+            <th scope="row">Criminal case :</th>
+            <td th:text="${offender.criminalCase}"></td>
+        </tr>
+    </table>
+                </div>
+
+                <div class="col-lg-4">
+                    <h3>Description</h3>
+    <table class="table table-sm table-striped table-horizontal table-hover">
+        <tr>
+            <th scope="row">Height :</th>
+            <td th:text="${offender.description.height}"></td>
+        </tr>
+        <tr>
+            <th scope="row">Hair color :</th>
+            <td th:text="${offender.description.hairColor}"></td>
+        </tr>
+        <tr>
+            <th scope="row">Eye color :</th>
+            <td th:text="${offender.description.eyeColor}"></td>
+        </tr>
+        <tr>
+            <th scope="row">Distinctive features :</th>
+            <td th:text="${offender.description.distinctiveFeatures}"></td>
+        </tr>
+    </table>
+                </div>
+
+            <div class="col-lg-8">
+                <h4>Details</h4>
+<table class="table table-sm  table-striped table-horizontal table-hover">
+    <tr>
+        <th>Place of birth :</th>
+        <td th:text="${offender.location.placeOfBirth}"></td>
+    </tr>
+    <tr>
+        <th>Last place of residence :</th>
+        <td th:text="${offender.location.lastPlaceOfResidence}"></td>
+    </tr>
+
+    <tr>
+        <th>Language :</th>
+        <td th:each="language : ${offender.languages}"
+            th:text="${language.name}"></td>
+    </tr>
+
+    <tr>
+        <th>Criminal organisation :</th>
+        <td th:text="${offender.criminalOrganization.name}"></td>
+    </tr>
+    <tr>
+        <th>Role in criminal organisation :</th>
+        <td th:text="${offender.criminalOrganization.accomplices}"></td>
+    </tr>
+    <tr>
+        <th>Archived :</th>
+        <td th:text="${offender.archived ? 'Yes' : 'No'}"></td>
+    </tr>
+</table>
+</div>
+            </div>
+
+    </section>
+</div>
+</body>
+</html>

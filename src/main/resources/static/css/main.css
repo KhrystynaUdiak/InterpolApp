@@ -1,0 +1,8 @@
+.navbar-brand img{
+    max-height:70px;
+    margin-left:40px
+}
+
+.navbar-brand img:hover{
+    opacity: 0.8;
+}

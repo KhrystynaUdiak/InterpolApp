@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/bootstrap-5.3.3-dist/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <title>Update</title>
+</head>
+<body>
+<div th:replace="header.html :: navbar"></div>
+<div class="container-fluid">
+    <h1 th:text="'Update ' + ${offender.firstName} + ' ' + ${offender.lastName} +'s info'">Update info about offender</h1>
+    <div th:fragment="offenderform">
+        <form th:action="@{'/offenders/'+${offender.id}+'/update'}" method="post" style="max-width: 700px; margin:0 auto;"
+              th:object="${offender}">
+            <div class="border border-secondary rounded p-3">
+                <input type="hidden" id="id" name="id" th:value="${offender.id}" />
+                <input type="hidden" id="description.id" name="description.id" th:value="${offender.description.id}" />
+                <input type="hidden" id="location.id" name="location.id" th:value="${offender.location.id}" />
+                <input type="hidden" id="criminalOrganization.id" name="criminalOrganization.id" th:value="${offender.criminalOrganization.id}" />
+                <div class="form-group row mt-2">
+                    <label for="offender_id" class="col-sm-4 col-form-label">Id: </label>
+                    <div class="col-sm-8">
+                        <input id="offender_id" type="text" class="form-control" th:field="*{id}" disabled/>
+                    </div>
+                </div>
+                <div class="form-group row mt-2">
+                    <label for="firstname" class="col-sm-4 col-form-label">Firstname: </label>
+                    <div class="col-sm-8">
+                        <input id="firstname" type="text" class="form-control" th:field="*{firstName}" required minlength="2"
+                               maxlength="45"/>
+                    </div>
+                </div>
+                <div class="form-group row mt-2">
+                    <label for="lastname" class="col-sm-4 col-form-label">Lastname: </label>
+                    <div class="col-sm-8">
+                        <input id="lastname" type="text" class="form-control" th:field="*{lastName}" required minlength="2"
+                               maxlength="45"/>
+                    </div>
+                </div>
+                <div class="form-group row mt-2">
+                    <label for="alias" class="col-sm-4 col-form-label">Alias: </label>
+                    <div class="col-sm-8">
+                        <input id="alias" type="text" class="form-control" th:field="*{alias}"/>
+                    </div>
+                </div>
+                <div class="form-group row mt-2">
+                    <label for="birthdate" class="col-sm-4 col-form-label">Birthdate: </label>
+                    <div class="col-sm-8">
+                        <input id="birthdate" type="date" class="form-control" th:field="*{birthdate}" >
+                    </div>
+                </div>
+                <div class="form-group row mt-2">
+                    <label for="citizenship" class="col-sm-4 col-form-label">Citizenship: </label>
+                    <div class="col-sm-8">
+                        <select id="citizenship" th:field="*{citizenship}" class="form-control">
+                            <option th:each="citizenship: ${citizenships}"
+                                    th:value="${citizenship}"
+                                    th:text="${citizenship}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row mt-2">
+                    <label for="criminal_case" class="col-sm-4 col-form-label">Criminal case: </label>
+                    <div class="col-sm-8">
+                        <input id="criminal_case" type="text" class="form-control" th:field="*{criminalCase}" >
+                    </div>
+                </div>
+                <div class="form-group row mt-2">
+                    <label for="height" class="col-sm-4 col-form-label">Height: </label>
+                    <div class="col-sm-8">
+                        <input id="height" type="text" class="form-control" th:field="*{description.height}" >
+                    </div>
+                </div>
+                <div class="form-group row mt-2">
+                    <label for="hair_color" class="col-sm-4 col-form-label">Hair color: </label>
+                    <div class="col-sm-8">
+                        <input id="hair_color" type="text" class="form-control" th:field="*{description.hairColor}" >
+                    </div>
+                </div>
+                <div class="form-group row mt-2">
+                    <label for="eye_color" class="col-sm-4 col-form-label">Eye color: </label>
+                    <div class="col-sm-8">
+                        <input id="eye_color" type="text" class="form-control" th:field="*{description.eyeColor}" >
+                    </div>
+                </div>
+                <div class="form-group row mt-2">
+                    <label for="distinctive_features" class="col-sm-4 col-form-label">Distinctive features: </label>
+                    <div class="col-sm-8">
+                        <input id="distinctive_features" type="text" class="form-control" th:field="*{description.distinctiveFeatures}" >
+                    </div>
+                </div>
+                <div class="form-group row mt-2">
+                    <label for="place_of_birth" class="col-sm-4 col-form-label">Place of birth: </label>
+                    <div class="col-sm-8">
+                        <input id="place_of_birth" type="text" class="form-control" th:field="*{location.placeOfBirth}" >
+                    </div>
+                </div>
+                <div class="form-group row mt-2">
+                    <label for="last_place_of_residence" class="col-sm-4 col-form-label">Last place of residence: </label>
+                    <div class="col-sm-8">
+                        <input id="last_place_of_residence" type="text" class="form-control" th:field="*{location.lastPlaceOfResidence}" >
+                    </div>
+                </div>
+                <div class="form-group row mt-2">
+                    <label for="criminal_organization" class="col-sm-4 col-form-label">Criminal organization: </label>
+                    <div class="col-sm-8">
+                        <input id="criminal_organization" type="text" class="form-control" th:field="*{criminalOrganization.name}" >
+                    </div>
+                </div>
+                <div class="form-group row mt-2">
+                    <label for="kind_of_accomplice" class="col-sm-4 col-form-label">Kind of accomplice: </label>
+                    <div class="col-sm-8">
+                        <select id="kind_of_accomplice" th:field="*{criminalOrganization.accomplices}" class="form-control">
+                            <option th:each="accomplice: ${accomplices}"
+                                    th:value="${accomplice}"
+                                    th:text="${accomplice}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row mt-2">
+                    <label for="languages" class="col-sm-4 col-form-label">Languages: </label>
+                    <div class="col-sm-8">
+                        <select id="languages" th:field="*{languages}" class="form-control" multiple>
+                            <option value="">---</option>
+                            <option th:each="language: ${languages}"
+                                    th:value="${language.id}"
+                                    th:text="${language.name}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row mt-2">
+                    <label for="archived" class="col-sm-4 col-form-label">Archived: </label>
+                    <div class="col-sm-8">
+                        <input id="archived" type="checkbox"  th:field="*{archived}" >
+                    </div>
+                </div>
+
+                <div class="form-group row mt-2">
+                    <label for="deathDate" class="col-sm-4 col-form-label">Date of death: </label>
+                    <div class="col-sm-8">
+                        <input id="deathDate" type="date" class="form-control" th:field="*{deathDate}">
+                    </div>
+                </div>
+
+
+                <div class="text-center">
+                    <input type="submit" value="Update" class="btn btn-primary m-3"/>
+                    <input id="clear" type="reset" value="Clear" class="btn btn-secondary"/>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+</body>
+<script>
+    const btn = document.getElementById('clear');
+    btn.addEventListener('click', function handleClick(event) {
+        event.preventDefault();
+        const inputs = document.querySelectorAll('#first_name, #last_name, #alias, #birthdate, #citizenship, #criminal_case, #height, #hair_color, #eye_color, #distinctive_features, #criminal_organization, #kind_of_accomplice, #place_of_birth, #last_place_of_residence, #languages');
+        inputs.forEach(input => {
+            input.value = '';
+        });
+    });
+</script>
+</html>
