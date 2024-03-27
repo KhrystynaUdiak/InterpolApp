@@ -2,7 +2,6 @@ package com.example.springapp.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
@@ -75,7 +74,7 @@ public class Offender {
     @Column(name = "archived", nullable = false)
     private boolean archived;
 
-    @Column
+    @Column(name = "death_date")
     private String deathDate;
 
     public void setAge(int age) {

@@ -1,7 +1,6 @@
 package com.example.springapp.service.impl;
 
 import com.example.springapp.model.Description;
-import com.example.springapp.model.Offender;
 import com.example.springapp.repository.DescriptionRepository;
 import com.example.springapp.service.DescriptionService;
 import lombok.AllArgsConstructor;

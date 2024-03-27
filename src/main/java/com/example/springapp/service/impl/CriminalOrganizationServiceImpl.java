@@ -1,7 +1,6 @@
 package com.example.springapp.service.impl;
 
 import com.example.springapp.model.CriminalOrganization;
-import com.example.springapp.model.Offender;
 import com.example.springapp.repository.CriminalOrganizationRepository;
 import com.example.springapp.service.CriminalOrganizationService;
 import lombok.AllArgsConstructor;

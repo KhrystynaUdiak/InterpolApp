@@ -111,15 +111,15 @@ public class OffenderController implements WebMvcConfigurer {
         return "redirect:/offenders/" + offender.getId() + "/read";
     }
     @GetMapping("/{id}/delete")
-    public String delete(@PathVariable(("id"))Long id, Model model, RedirectAttributes redirectAttributes) {
+    public String delete(@PathVariable(("id"))Long id, RedirectAttributes redirectAttributes) {
         try {
             offenderService.delete(id);
         }
-        catch(Exception e){
+        catch(NoSuchElementException e){
             redirectAttributes.addFlashAttribute("message", "Could not find offender with ID " + id);
             return "redirect:/";
         }
-        redirectAttributes.addFlashAttribute("message", "Offender " + offenderService.readById(id).getFirstName() + " " + offenderService.readById(id).getLastName() + " removed");
+        redirectAttributes.addFlashAttribute("message", "Offender removed");
         return "redirect:/offenders/all";
     }
 

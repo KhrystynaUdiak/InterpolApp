@@ -5,8 +5,13 @@ INSERT INTO criminal_organization (kind_of_accomplices, name) VALUES ('ACCESSORY
 
 INSERT INTO description (distinctive_features, eye_color, hair_color, height) VALUES ('white spot on neck', 'black', 'black', 180);
 INSERT INTO description (distinctive_features, eye_color, hair_color, height) VALUES ('-', 'black', 'grey', 175);
+INSERT INTO description (distinctive_features, eye_color, hair_color, height) VALUES ('bold', 'blue', '-', 168);
+INSERT INTO description (distinctive_features, eye_color, hair_color, height) VALUES ('-', 'grey', 'grey', 161);
+
 
 INSERT INTO location(last_place_of_residence, place_of_birth) VALUES ('Poland', 'Poland');
+INSERT INTO location(last_place_of_residence, place_of_birth) VALUES ('Armenia', 'Serbia');
+INSERT INTO location(last_place_of_residence, place_of_birth) VALUES ('Bulgaria', 'Serbia');
 
 INSERT INTO languages (language) VALUES ('Azerbaijani');
 INSERT INTO languages (language) VALUES ('Albanian');
@@ -79,3 +84,7 @@ INSERT INTO offenders (age, archived, criminal_organization_id, description_id, 
 VALUES (33, false, 1, 1, 1, 'hid', '1991-02-03', 'POLAND', 'art. 185 of Criminal Code (theft)', 'Mike', 'Hidden');
 INSERT INTO offenders (age, archived, criminal_organization_id, description_id, location_id, alias, birthdate, citizenship, criminal_case, first_name, last_name)
 VALUES (32, false, 2, 2, 1, 'eduardo', '1991-06-28', 'ARGENTINA', 'art. 185 of Criminal Code (theft)', 'Castillo', 'Hector');
+INSERT INTO offenders (age, archived, criminal_organization_id, description_id, location_id, alias, birthdate, citizenship, criminal_case, first_name, last_name)
+VALUES (30, false, 3, 3, 2, '-', '1994-02-02', 'SERBIA', 'art. 185 of Criminal Code (theft)', 'Akhsanov', 'Rumil');
+INSERT INTO offenders (age, archived, criminal_organization_id, description_id, location_id, alias, birthdate, citizenship, criminal_case, first_name, last_name)
+VALUES (45, false, 4, 4, 3, '-', '1979-01-18', 'BULGARIA', 'art. 185 of Criminal Code (theft)', 'Dimitrova', 'Veneta');

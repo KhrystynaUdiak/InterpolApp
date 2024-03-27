@@ -1,6 +1,5 @@
 package com.example.springapp.service;
 
-import com.example.springapp.model.Description;
 import com.example.springapp.model.Offender;
 
 import java.util.List;

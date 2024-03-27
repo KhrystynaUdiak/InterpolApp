@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<div th:replace="header.html :: navbar"></div>
+<div th:replace="~{header :: navbar}"></div>
 
 <div class="container-fluid">
     <div>
@@ -24,8 +24,6 @@
         <div class="container">
             <div class="row">
             <div class="col-md-3">
-<!--            <div class="flex-wrap">-->
-<!--                <div class="form-group row mt-2">-->
                     <h2>Filter criteria</h2>
                    <form th:action="@{/offenders/filter}" method="post" style="max-width: 700px; margin:0 auto;">
                        <div>
@@ -64,7 +62,6 @@
                            <input type="submit" value="Search" class="btn btn-primary m-3"/>
                        </div>
                    </form>
-<!--                </div>-->
             </div>
             <div class="col-md-9">
         <table class="table table-striped table-responsive-xl table-hover">

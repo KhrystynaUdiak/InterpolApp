@@ -1,15 +1,11 @@
 package com.example.springapp.dto;
 
 import com.example.springapp.model.*;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -35,13 +31,10 @@ public class OffenderDto {
     @NotNull
     private String criminalCase;
 
-//    private long descriptionId;
     private Description description;
 
-//    private long locationId;
     private Location location;
 
-//    private long criminalOrganizationId;
     private CriminalOrganization criminalOrganization;
 
     private List<Language> languages;

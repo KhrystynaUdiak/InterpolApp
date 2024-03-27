@@ -6,5 +6,5 @@ public interface CriminalOrganizationService {
 
     public CriminalOrganization readById(long id);
 
-    CriminalOrganization create(CriminalOrganization criminalOrganization);
+    public CriminalOrganization create(CriminalOrganization criminalOrganization);
 }
