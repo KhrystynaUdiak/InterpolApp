@@ -80,8 +80,8 @@
             </thead>
 
             <tbody>
-            <tr th:each="offender : ${offenders}">
-                <td th:text="${offender.id}"></td>
+            <tr th:each="offender, index : ${offenders}">
+                <td th:text="${index.index + 1}"></td>
                 <td>
                     <a th:href="@{'/offenders/'+${offender.id}+'/read'}">
                         <span th:text="${offender.firstName}"> </span>

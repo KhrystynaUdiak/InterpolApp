@@ -83,8 +83,8 @@ INSERT INTO languages (language) VALUES ('Welsh');
 INSERT INTO offenders (age, archived, criminal_organization_id, description_id, location_id, alias, birthdate, citizenship, criminal_case, first_name, last_name)
 VALUES (33, false, 1, 1, 1, 'hid', '1991-02-03', 'POLAND', 'art. 185 of Criminal Code (theft)', 'Mike', 'Hidden');
 INSERT INTO offenders (age, archived, criminal_organization_id, description_id, location_id, alias, birthdate, citizenship, criminal_case, first_name, last_name)
-VALUES (32, false, 2, 2, 1, 'eduardo', '1991-06-28', 'ARGENTINA', 'art. 185 of Criminal Code (theft)', 'Castillo', 'Hector');
+VALUES (32, false, 2, 2, 1, 'eduardo', '1991-06-28', 'ARGENTINA', 'art. 185 of Criminal Code (theft)', 'Hector', 'Castillo');
 INSERT INTO offenders (age, archived, criminal_organization_id, description_id, location_id, alias, birthdate, citizenship, criminal_case, first_name, last_name)
-VALUES (30, false, 3, 3, 2, '-', '1994-02-02', 'SERBIA', 'art. 185 of Criminal Code (theft)', 'Akhsanov', 'Rumil');
+VALUES (30, false, 3, 3, 2, '-', '1994-02-02', 'SERBIA', 'art. 185 of Criminal Code (theft)', 'Rumil', 'Akhsanov');
 INSERT INTO offenders (age, archived, criminal_organization_id, description_id, location_id, alias, birthdate, citizenship, criminal_case, first_name, last_name)
-VALUES (45, false, 4, 4, 3, '-', '1979-01-18', 'BULGARIA', 'art. 185 of Criminal Code (theft)', 'Dimitrova', 'Veneta');
+VALUES (45, false, 4, 4, 3, '-', '1979-01-18', 'BULGARIA', 'art. 185 of Criminal Code (theft)', 'Veneta', 'Dimitrova');
