@@ -19,6 +19,7 @@ public class OffenderDtoTransformer {
                 offender.getLocation(),
                 offender.getCriminalOrganization(),
                 offender.getLanguages(),
+                offender.getImages(),
                 offender.isArchived(),
                 offender.getDeathDate());
     }
@@ -38,6 +39,7 @@ public class OffenderDtoTransformer {
         offender.setCriminalOrganization(criminalOrganization);
         offender.setLanguages(languages);
         offender.setDeathDate(offenderDto.getDeathDate());
+//        offender.setImages(offenderDto.getImages());
         offender.setArchived(offenderDto.isArchived());
         return offender;
     }

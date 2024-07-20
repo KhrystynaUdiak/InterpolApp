@@ -1,24 +1,56 @@
 package com.example.springapp.service.impl;
 
+import com.example.springapp.model.Image;
 import com.example.springapp.model.Offender;
 import com.example.springapp.repository.OffenderRepository;
 import com.example.springapp.service.OffenderService;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
+@Slf4j
+@Transactional
 @Service
 public class OffenderServiceImpl implements OffenderService {
     @Autowired
     OffenderRepository offenderRepository;
+    @Autowired
+    ImageServiceImpl imageService;
     @Override
-    public Offender create(Offender offender) {
+    @Transactional
+    public Offender create(Offender offender, MultipartFile firstFile, MultipartFile secondFile) throws IOException {
+        Image firstImage;
+        Image secondImage;
+
+        if(firstFile.getSize() !=0){
+            firstImage = toImageEntity(firstFile);
+            offender.addImageToOffender(firstImage);
+
+        }
+        if(secondFile.getSize() !=0){
+            secondImage = toImageEntity(secondFile);
+            offender.addImageToOffender(secondImage);;
+        }
         return offenderRepository.save(offender);
+    }
+
+    private Image toImageEntity(MultipartFile file) throws IOException{
+        Image image = new Image();
+        image.setName(file.getName());
+        image.setOriginalFileName(image.getOriginalFileName());
+        image.setContentType(file.getContentType());
+        image.setSize(file.getSize());
+        image.setImageData(file.getBytes());
+        return image;
     }
 
     @Override

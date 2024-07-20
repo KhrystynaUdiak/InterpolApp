@@ -11,12 +11,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE;
 
 
 @Controller
@@ -51,7 +55,13 @@ public class OffenderController implements WebMvcConfigurer {
     }
 
     @PostMapping("/create")
-    public String create(@Valid OffenderDto offenderDto, BindingResult bindingResult, @RequestParam("languages") List<Language> languages,Model model, RedirectAttributes redirectAttributes){
+    public String create(@Valid OffenderDto offenderDto,
+                         BindingResult bindingResult,
+                         @RequestParam("languages") List<Language> languages,
+                         @RequestParam(value = "firstImage", required = false) MultipartFile firstImage,
+                         @RequestParam(value = "secondImage", required = false) MultipartFile secondImage,
+                         Model model,
+                         RedirectAttributes redirectAttributes) throws IOException {
         if (bindingResult.hasErrors()) {
             model.addAttribute("message", "Some values in the form are incorrect");
             return "offender-create";
@@ -62,7 +72,7 @@ public class OffenderController implements WebMvcConfigurer {
         CriminalOrganization criminalOrganization = criminalOrganizationService.create(offenderDto.getCriminalOrganization());
 
         Offender offender = OffenderDtoTransformer.convertToEntity(offenderDto, description, location, criminalOrganization, languages);
-        offender = offenderService.create(offender);
+        offender = offenderService.create(offender, firstImage, secondImage);
         redirectAttributes.addFlashAttribute("message", "Successfully saved " + offender.getFirstName() + offender.getLastName());
         return "redirect:/offenders/" + offender.getId() + "/read";
     }
@@ -72,6 +82,7 @@ public class OffenderController implements WebMvcConfigurer {
         try{
             OffenderDto offenderDto = OffenderDtoTransformer.convertToDto(offenderService.readById(id));
             model.addAttribute("offender", offenderDto);
+            model.addAttribute("images", offenderDto.getImages());
             model.addAttribute("archived", offenderDto.isArchived());
             return "/offender-info";
         }catch (NoSuchElementException e){

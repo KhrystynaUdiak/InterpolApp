@@ -9,6 +9,7 @@ import org.hibernate.proxy.HibernateProxy;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -43,6 +44,9 @@ public class Offender {
 
     @Column(name = "age")
     private int age;
+
+    @OneToMany(mappedBy = "offender", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Image> images;
 
     @Column(name = "citizenship")
     @Enumerated(EnumType.STRING)
@@ -102,4 +106,12 @@ public class Offender {
     public final int hashCode() {
         return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
     }
+    public void addImageToOffender(Image image) {
+        image.setOffender(this);
+        if (this.images == null) {
+            this.images = new ArrayList<>();
+        }
+        images.add(image);
+    }
 }
+

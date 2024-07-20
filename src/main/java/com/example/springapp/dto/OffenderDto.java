@@ -38,6 +38,7 @@ public class OffenderDto {
     private CriminalOrganization criminalOrganization;
 
     private List<Language> languages;
+    private List<Image> images;
 
     private boolean archived;
 
